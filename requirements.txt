@@ -1,2 +1,2 @@
-flask_core
-cohere
+Flask
+Flask-Cors
