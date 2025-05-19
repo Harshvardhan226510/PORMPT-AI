@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
 from flask_cors import CORS
 import cohere
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -47,6 +48,11 @@ def modify_prompt():
 @app.route("/privacy")
 def privacy():
     return render_template("privacy.html")
+
+# ✅ New route to serve robots.txt
+@app.route("/robots.txt")
+def robots():
+    return send_from_directory(os.path.join(app.root_path), 'robots.txt')
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
